@@ -6,12 +6,8 @@ import mongoose from "mongoose";
 import config from "./common/config/config";
 import logger from "./common/config/logger";
 import cors from "cors";
-import i18nextMiddleware from "i18next-express-middleware";
-import i18next from "./common/middlewares/i18next";
 
 const router: Express = express();
-
-router.use(i18nextMiddleware.handle(i18next));
 
 router.use(morgan("dev"));
 
