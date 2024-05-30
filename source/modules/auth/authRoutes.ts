@@ -8,7 +8,7 @@ const router = express.Router();
 
 router
   .route("/signup")
-  .post(validate(authValidation.signup), authController.login)
+  .post(validate(authValidation.signup), authController.signup)
   .all(methodNotAllowed);
 
 export default router;
