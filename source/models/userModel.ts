@@ -14,6 +14,9 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String,
   },
+  googleid: {
+    type: String,
+  },
 
   role: {
     type: String,
