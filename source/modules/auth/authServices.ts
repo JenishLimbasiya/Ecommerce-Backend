@@ -12,7 +12,7 @@ const signup = async (req: Request, body: signup) => {
       email: body.email,
     });
 
-    if (!cheakUser) {
+    if (cheakUser) {
       throw new appError(
         httpStatus.NOT_FOUND,
         (req as any).t("errorMessages.userExist")
