@@ -17,7 +17,6 @@ const userSchema = new mongoose.Schema({
   googleid: {
     type: String,
   },
-
   role: {
     type: String,
     enum: [constant.ROLES.ADMIN, constant.ROLES.USER],
