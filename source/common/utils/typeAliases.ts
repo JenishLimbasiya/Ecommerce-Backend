@@ -22,3 +22,11 @@ declare module "express" {
     user?: any; // Add this line to define the user property on Request
   }
 }
+
+export interface signup {
+  fullName?: string;
+  email?: string;
+  password: string;
+  phone?: string;
+  googleid?: string;
+}
