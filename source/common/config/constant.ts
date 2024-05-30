@@ -1,5 +1,6 @@
 const ROLES = {
   USER: "User",
+  ADMIN: "Admin",
 };
 const STATUS = {
   ACTIVE: "Active",

@@ -1,3 +1,5 @@
+import Joi from "joi";
+
 export interface appError {
   status: number;
   isOperational?: boolean;
@@ -8,4 +10,15 @@ export interface appError {
 export interface apiResponse {
   messsge: string;
   data: Array<object> | object;
+}
+
+export interface requestSchema {
+  params?: Joi.ObjectSchema;
+  query?: Joi.ObjectSchema;
+  body?: Joi.ObjectSchema;
+}
+declare module "express" {
+  export interface Request {
+    user?: any; // Add this line to define the user property on Request
+  }
 }
