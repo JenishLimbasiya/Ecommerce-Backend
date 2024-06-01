@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import Joi, { ValidationResult } from "joi";
 import { pick } from "lodash";
 import { requestSchema } from "../utils/typeAliases";
-import { log } from "console";
+import message from "../../local//message";
 
 const validate =
   (schema: any) => (req: Request, res: Response, next: NextFunction) => {
@@ -19,8 +19,11 @@ const validate =
     if (error) {
       const { details } = error;
       const messages = details.map((i) => {
-        const label = i.context?.label || i.context?.key; // Fallback to the key if label is not available
-        const translatedMessage = (req as any).t(`validationMessages.${label}`);
+        const label = i.context?.label || i.context?.key || "unknown";
+        console.log("label", label);
+
+        const translatedMessage =
+          message.validate[label as keyof typeof message.validate];
         return translatedMessage || i.message;
       });
 
