@@ -11,4 +11,9 @@ router
   .post(validate(authValidation.signup), authController.signup)
   .all(methodNotAllowed);
 
+router
+  .route("/login")
+  .post(validate(authValidation.login), authController.login)
+  .all(methodNotAllowed);
+
 export default router;

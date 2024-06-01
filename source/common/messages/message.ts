@@ -1,5 +1,6 @@
 const success = {
   signup: "signup successfully",
+  login: "Login successfully!",
 };
 
 const validate = {
@@ -17,6 +18,7 @@ const errormessage = {
   tokenExpire: "Access Token is Expired. Please Authenticate Again.",
   invalidAccessToken: "Access Token is invalid.",
   userExist: "user is alredy exists",
+  incorrectPassword: "Incorrect password entered.",
 };
 
 export default {

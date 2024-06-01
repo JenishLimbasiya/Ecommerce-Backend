@@ -30,3 +30,7 @@ export interface signup {
   phone?: string;
   googleid?: string;
 }
+export interface login {
+  email?: string;
+  password: string;
+}
