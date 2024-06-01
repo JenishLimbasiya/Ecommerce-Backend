@@ -38,7 +38,28 @@ const login = async (req: Request, res: Response) => {
   }
 };
 
+const forgotPassword = async (req: Request, res: Response) => {
+  try {
+    const user = await authServices.forgotPassword(req, req.body);
+
+    createResponse(res, httpStatus.OK, message.success.forgotPassword);
+  } catch (error: any) {
+    createResponse(res, error.status, error.message);
+  }
+};
+
+const verifyToken = async (req: Request, res: Response) => {
+  try {
+    const user = await authServices.verifyToken(req, req.body);
+
+    createResponse(res, httpStatus.OK, message.success.tokenVerified);
+  } catch (error: any) {
+    createResponse(res, error.status, error.message);
+  }
+};
 export default {
   signup,
   login,
+  forgotPassword,
+  verifyToken,
 };

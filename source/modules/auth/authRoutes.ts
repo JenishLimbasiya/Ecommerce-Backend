@@ -16,4 +16,14 @@ router
   .post(validate(authValidation.login), authController.login)
   .all(methodNotAllowed);
 
+router
+  .route("/forgotPassword")
+  .post(validate(authValidation.forgotPassword), authController.forgotPassword)
+  .all(methodNotAllowed);
+
+router
+  .route("/forgotPassword/verifyToken")
+  .post(validate(authValidation.verifyToken), authController.verifyToken)
+  .all(methodNotAllowed);
+
 export default router;

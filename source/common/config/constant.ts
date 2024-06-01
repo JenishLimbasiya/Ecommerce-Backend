@@ -12,6 +12,8 @@ const REGEX = {
   MONGO_ID: /^[0-9a-fA-F]{24}$/,
 };
 
+const FORGOT = "FORGOT";
+
 const PAYMENT_STATUS = {
   REFUNDED: "refunded",
   CREATED: "created",
@@ -33,4 +35,5 @@ export default {
   OTP_EXPIRY,
   PAYMENT_STATUS,
   REGEX,
+  FORGOT,
 };

@@ -31,6 +31,8 @@ const userSchema = new mongoose.Schema({
     ],
     default: constant.STATUS.ACTIVE,
   },
+  forgotPasswordToken: String,
+  forgotPasswordTokenExpiry: Date,
 });
 
 const userModel = mongoose.model("users", userSchema);

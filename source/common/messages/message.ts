@@ -1,10 +1,14 @@
 const success = {
   signup: "signup successfully",
   login: "Login successfully!",
+  forgotPassword: "Forgot Password Email Sent Successfully!",
+  tokenVerified: "Token verify Successfully!",
 };
 
 const validate = {
   name: "name is required!",
+  email: "email is required!",
+  token: "token is required!",
 };
 
 const errormessage = {
@@ -19,6 +23,8 @@ const errormessage = {
   invalidAccessToken: "Access Token is invalid.",
   userExist: "user is alredy exists",
   incorrectPassword: "Incorrect password entered.",
+  userNotExist: "user not exists",
+  invalidToken: "Invalid Token",
 };
 
 export default {

@@ -22,7 +22,6 @@ declare module "express" {
     user?: any; // Add this line to define the user property on Request
   }
 }
-
 export interface signup {
   fullName?: string;
   email?: string;
@@ -31,6 +30,12 @@ export interface signup {
   googleid?: string;
 }
 export interface login {
-  email?: string;
+  email: string;
   password: string;
+}
+export interface forgotPassword {
+  email: string;
+}
+export interface verifyToken {
+  token: string;
 }

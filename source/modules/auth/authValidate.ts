@@ -18,7 +18,21 @@ const login = {
   }),
 };
 
+const forgotPassword = {
+  body: Joi.object().keys({
+    email: Joi.string().email().required().label("email"),
+  }),
+};
+
+const verifyToken = {
+  body: Joi.object().keys({
+    token: Joi.string().required().label("token"),
+  }),
+};
+
 export default {
   signup,
   login,
+  forgotPassword,
+  verifyToken,
 };
