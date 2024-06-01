@@ -19,8 +19,7 @@ const validate =
     if (error) {
       const { details } = error;
       const messages = details.map((i) => {
-        const label = i.context?.label || i.context?.key || "unknown";
-        console.log("label", label);
+        const label = i.context?.label || i.context?.key;
 
         const translatedMessage =
           message.validate[label as keyof typeof message.validate];
