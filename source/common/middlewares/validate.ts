@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import Joi, { ValidationResult } from "joi";
 import { pick } from "lodash";
 import { requestSchema } from "../utils/typeAliases";
-import message from "../../local//message";
+import message from "../messages/message";
 
 const validate =
   (schema: any) => (req: Request, res: Response, next: NextFunction) => {
@@ -11,7 +11,9 @@ const validate =
       "query",
       "body",
     ]);
+
     const object: Partial<Request> = pick(req, Object.keys(validSchema));
+
     const { value, error }: ValidationResult = Joi.compile(validSchema)
       .prefs({ errors: { label: "key" } })
       .validate(object);

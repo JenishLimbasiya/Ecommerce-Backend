@@ -5,6 +5,7 @@ import appError from "../../common/utils/appError";
 import userModel from "../../models/userModel";
 import { signup } from "../../common/utils/typeAliases";
 import constant from "../../common/config/constant";
+import message from "../../common/messages/message";
 
 const signup = async (req: Request, body: signup) => {
   try {
@@ -13,10 +14,7 @@ const signup = async (req: Request, body: signup) => {
     });
 
     if (cheakUser) {
-      throw new appError(
-        httpStatus.NOT_FOUND,
-        (req as any).t("errorMessages.userExist")
-      );
+      throw new appError(httpStatus.NOT_FOUND, message.errormessage.userExist);
     }
 
     const hashedPassword = await bcrypt.hash(

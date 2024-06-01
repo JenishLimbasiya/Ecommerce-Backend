@@ -6,6 +6,7 @@ import { roleRights } from "../config/roles";
 import appError from "../utils/appError";
 import userModel from "../../models/userModel";
 import constant from "../../common/config/constant";
+import message from "../messages/message";
 
 const auth =
   (routeMethod: string) =>
@@ -17,14 +18,13 @@ const auth =
       if (!token) {
         throw new appError(
           httpStatus.UNAUTHORIZED,
-          (req as any).t("errorMessages.needAuthentication")
+          message.errormessage.needAuthentication
         );
       } else {
         const decoded = jwt.verify(token, secretKey);
         const userData: any = decoded.sub;
         if (routeMethod) {
           let converarray = [routeMethod];
-          // const userData: any = decoded.sub;
           const userRights = roleRights.get(userData.role);
 
           const hasRequiredRights = converarray.every((requiredRight) =>
@@ -34,7 +34,7 @@ const auth =
           if (!hasRequiredRights) {
             throw new appError(
               httpStatus.FORBIDDEN,
-              (req as any).t("errorMessages.authenticationFailed")
+              message.errormessage.authenticationFailed
             );
           }
         }
@@ -46,19 +46,19 @@ const auth =
         if (!findUser) {
           throw new appError(
             httpStatus.NOT_FOUND,
-            (req as any).t("errorMessages.userIdNotFound")
+            message.errormessage.userIdNotFound
           );
         }
         if (findUser.status === constant.STATUS.INACTIVE) {
           throw new appError(
             httpStatus.FORBIDDEN,
-            (req as any).t("errorMessages.accountInactive")
+            message.errormessage.accountInactive
           );
         }
         if (findUser.status === constant.STATUS.DELETE) {
           throw new appError(
             httpStatus.GONE,
-            (req as any).t("errorMessages.accountDeleted")
+            message.errormessage.accountDeleted
           );
         }
         next();
@@ -68,13 +68,13 @@ const auth =
         createResponse(
           res,
           httpStatus.UNAUTHORIZED,
-          (req as any).t("errorMessages.tokenExpire")
+          message.errormessage.tokenExpire
         );
       } else if (err.message === "invalid signature") {
         createResponse(
           res,
           httpStatus.UNAUTHORIZED,
-          (req as any).t("errorMessages.invalidAccessToken")
+          message.errormessage.invalidAccessToken
         );
       } else {
         createResponse(res, err.status, err.message);
