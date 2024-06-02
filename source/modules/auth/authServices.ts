@@ -3,7 +3,13 @@ import { Request } from "express";
 import httpStatus from "http-status";
 import appError from "../../common/utils/appError";
 import userModel from "../../models/userModel";
-import { changePassword, login, signup } from "../../common/utils/typeAliases";
+import {
+  changePassword,
+  forgotPassword,
+  login,
+  signup,
+  verifyToken,
+} from "../../common/utils/typeAliases";
 import constant from "../../common/config/constant";
 import message from "../../common/messages/message";
 
@@ -151,8 +157,50 @@ const changePassword = async (req: Request, body: changePassword) => {
   }
 };
 
+const forgotPassword = async (req: Request, body: forgotPassword) => {
+  try {
+    const cheakUser = await userModel.findOne({
+      email: body.email,
+    });
+
+    if (!cheakUser) {
+      throw new appError(
+        httpStatus.NOT_FOUND,
+        message.errormessage.userNotExist
+      );
+    }
+
+    // await sendEmail(cheakUser.email!, "FORGOT", cheakUser._id.toString());
+  } catch (error: any) {
+    throw new appError(error.status, error.message);
+  }
+};
+
+const verifyToken = async (req: Request, body: verifyToken) => {
+  try {
+    console.log("token", body.token);
+    const cheakToken = await userModel.findOne({
+      forgotPasswordToken: body.token,
+      forgotPasswordTokenExpiry: { $gt: Date.now() },
+    });
+
+    if (!cheakToken) {
+      throw new appError(
+        httpStatus.NOT_FOUND,
+        message.errormessage.invalidToken
+      );
+    }
+
+    return;
+  } catch (error: any) {
+    throw new appError(error.status, error.message);
+  }
+};
+
 export default {
   signup,
   login,
   changePassword,
+  forgotPassword,
+  verifyToken,
 };
