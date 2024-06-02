@@ -3,16 +3,9 @@ import { Request } from "express";
 import httpStatus from "http-status";
 import appError from "../../common/utils/appError";
 import userModel from "../../models/userModel";
-import {
-  forgotPassword,
-  login,
-  signup,
-  verifyToken,
-} from "../../common/utils/typeAliases";
+import { changePassword, login, signup } from "../../common/utils/typeAliases";
 import constant from "../../common/config/constant";
 import message from "../../common/messages/message";
-import { sendEmail } from "../../common/services/mailerService";
-import { string } from "joi";
 
 const signup = async (req: Request, body: signup) => {
   try {
@@ -72,48 +65,94 @@ const login = async (req: Request, body: login) => {
   }
 };
 
-const forgotPassword = async (req: Request, body: forgotPassword) => {
+// const changePassword = async (req: Request, password: string) => {
+//   try {
+//     const passwordHash = await bcrypt.hash(password, constant.saltRounds);
+
+//     const user = req.user;
+//     const userId = user.user;
+//     const cheakUser = await userModel.findById(userId);
+
+//     if (!cheakUser) {
+//       throw new appError(
+//         httpStatus.NOT_FOUND,
+//         message.errormessage.userIdNotFound
+//       );
+//     }
+
+//     const updatedUser = await userModel.findByIdAndUpdate(
+//       userId,
+//       { password: passwordHash },
+//       { new: true }
+//     );
+
+//     return updatedUser;
+//   } catch (error: any) {
+//     throw new appError(error.status, error.message);
+//   }
+// };
+
+const changePassword = async (req: Request, body: changePassword) => {
   try {
-    const cheakUser = await userModel.findOne({
-      email: body.email,
-    });
+    const passwordHash = await bcrypt.hash(
+      body.newPassword,
+      constant.saltRounds
+    );
+
+    const user = req.user;
+    const userId = user.user;
+    const cheakUser = await userModel.findById(userId);
+    const email: any = cheakUser?.email;
 
     if (!cheakUser) {
       throw new appError(
         httpStatus.NOT_FOUND,
-        message.errormessage.userNotExist
+        message.errormessage.userIdNotFound
       );
     }
 
-    // await sendEmail(cheakUser.email!, "FORGOT", cheakUser._id.toString());
-  } catch (error: any) {
-    throw new appError(error.status, error.message);
-  }
-};
+    // if (!cheakUser.password) {
+    //   throw new appError(
+    //     httpStatus.UNPROCESSABLE_ENTITY,
+    //     (req as any).t("validationMessages.passwordNotFound")
+    //   );
+    // }
 
-const verifyToken = async (req: Request, body: verifyToken) => {
-  try {
-    console.log("token", body.token);
-    const cheakToken = await userModel.findOne({
-      forgotPasswordToken: body.token,
-      forgotPasswordTokenExpiry: { $gt: Date.now() },
+    // const passwordMatch = await bcrypt.compare(
+    //   body.oldPassword,
+    //   cheakUser.password
+    // );
+
+    const isPasswordMatch =
+      cheakUser.password &&
+      (await bcrypt.compare(body.oldPassword, cheakUser.password));
+
+    if (!isPasswordMatch) {
+      throw new appError(
+        httpStatus.UNAUTHORIZED,
+        message.errormessage.userIdNotFound
+      );
+    }
+
+    const updatedUser = await userModel.findByIdAndUpdate(userId, {
+      password: passwordHash,
     });
 
-    if (!cheakToken) {
+    if (!updatedUser) {
       throw new appError(
-        httpStatus.NOT_FOUND,
-        message.errormessage.invalidToken
+        httpStatus.INTERNAL_SERVER_ERROR,
+        (req as any).t("errorMessages.faildUpdatePassword")
       );
     }
 
-    return;
+    return updatedUser;
   } catch (error: any) {
     throw new appError(error.status, error.message);
   }
 };
+
 export default {
   signup,
   login,
-  forgotPassword,
-  verifyToken,
+  changePassword,
 };

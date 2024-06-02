@@ -41,7 +41,7 @@ const PORT = +(process.env.PORT as string) || 6060;
 let server: http.Server;
 
 mongoose.connect(config.mongoose.url).then((result: any) => {
-  logger.info(`Connected to MongoDB : ${config.mongoose.url}`);
+  logger.info("Database contation is successfully!");
   server = httpServer.listen(PORT, () =>
     console.log(`The server is running on port ${PORT}`)
   );
@@ -74,4 +74,3 @@ process.on("SIGTERM", () => {
     server.close();
   }
 });
-//r-world

@@ -30,9 +30,17 @@ const verifyToken = {
   }),
 };
 
+const changePassword = {
+  body: Joi.object().keys({
+    oldPassword: Joi.string().required().label("oldPassword"),
+    newPassword: Joi.string().required().label("newPassword"),
+  }),
+};
+
 export default {
   signup,
   login,
   forgotPassword,
   verifyToken,
+  changePassword,
 };

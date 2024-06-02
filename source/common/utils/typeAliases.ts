@@ -39,3 +39,8 @@ export interface forgotPassword {
 export interface verifyToken {
   token: string;
 }
+
+export interface changePassword {
+  oldPassword: string;
+  newPassword: string;
+}

@@ -4,4 +4,6 @@ const roleRights = new Map();
 
 roleRights.set(roles[0], ["addbox"]);
 
+roleRights.set(roles[1], ["changePassword"]);
+
 export { roles, roleRights };

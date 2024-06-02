@@ -3,12 +3,14 @@ const success = {
   login: "Login successfully!",
   forgotPassword: "Forgot Password Email Sent Successfully!",
   tokenVerified: "Token verify Successfully!",
+  passwordChange: "Password reset successful! New password has been update",
 };
 
 const validate = {
   name: "name is required!",
   email: "email is required!",
   token: "token is required!",
+  password: "password is required",
 };
 
 const errormessage = {
@@ -25,6 +27,7 @@ const errormessage = {
   incorrectPassword: "Incorrect password entered.",
   userNotExist: "user not exists",
   invalidToken: "Invalid Token",
+  oldPassword: "old password is incorrect",
 };
 
 export default {

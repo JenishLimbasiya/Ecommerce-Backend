@@ -57,9 +57,20 @@ const verifyToken = async (req: Request, res: Response) => {
     createResponse(res, error.status, error.message);
   }
 };
+
+const changePassword = async (req: Request, res: Response) => {
+  try {
+    const admin = await authServices.changePassword(req, req.body.Password);
+
+    createResponse(res, httpStatus.OK, message.success.passwordChange);
+  } catch (error: any) {
+    createResponse(res, error.status, error.message);
+  }
+};
 export default {
   signup,
   login,
   forgotPassword,
   verifyToken,
+  changePassword,
 };
