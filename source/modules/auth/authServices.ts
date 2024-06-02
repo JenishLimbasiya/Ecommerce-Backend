@@ -71,44 +71,12 @@ const login = async (req: Request, body: login) => {
   }
 };
 
-// const changePassword = async (req: Request, password: string) => {
-//   try {
-//     const passwordHash = await bcrypt.hash(password, constant.saltRounds);
-
-//     const user = req.user;
-//     const userId = user.user;
-//     const cheakUser = await userModel.findById(userId);
-
-//     if (!cheakUser) {
-//       throw new appError(
-//         httpStatus.NOT_FOUND,
-//         message.errormessage.userIdNotFound
-//       );
-//     }
-
-//     const updatedUser = await userModel.findByIdAndUpdate(
-//       userId,
-//       { password: passwordHash },
-//       { new: true }
-//     );
-
-//     return updatedUser;
-//   } catch (error: any) {
-//     throw new appError(error.status, error.message);
-//   }
-// };
-
 const changePassword = async (req: Request, body: changePassword) => {
   try {
-    const passwordHash = await bcrypt.hash(
-      body.newPassword,
-      constant.saltRounds
-    );
-
     const user = req.user;
     const userId = user.user;
+
     const cheakUser = await userModel.findById(userId);
-    const email: any = cheakUser?.email;
 
     if (!cheakUser) {
       throw new appError(
@@ -117,41 +85,29 @@ const changePassword = async (req: Request, body: changePassword) => {
       );
     }
 
-    // if (!cheakUser.password) {
-    //   throw new appError(
-    //     httpStatus.UNPROCESSABLE_ENTITY,
-    //     (req as any).t("validationMessages.passwordNotFound")
-    //   );
-    // }
-
-    // const passwordMatch = await bcrypt.compare(
-    //   body.oldPassword,
-    //   cheakUser.password
-    // );
-
     const isPasswordMatch =
-      cheakUser.password &&
+      cheakUser?.password &&
       (await bcrypt.compare(body.oldPassword, cheakUser.password));
 
     if (!isPasswordMatch) {
       throw new appError(
         httpStatus.UNAUTHORIZED,
-        message.errormessage.userIdNotFound
+        message.errormessage.oldPassword
       );
     }
 
-    const updatedUser = await userModel.findByIdAndUpdate(userId, {
-      password: passwordHash,
-    });
+    const passwordHash = await bcrypt.hash(
+      body.newPassword,
+      constant.saltRounds
+    );
 
-    if (!updatedUser) {
-      throw new appError(
-        httpStatus.INTERNAL_SERVER_ERROR,
-        (req as any).t("errorMessages.faildUpdatePassword")
-      );
-    }
+    const updatePassword = await userModel.findByIdAndUpdate(
+      userId,
+      { password: passwordHash },
+      { new: true }
+    );
 
-    return updatedUser;
+    return updatePassword;
   } catch (error: any) {
     throw new appError(error.status, error.message);
   }
