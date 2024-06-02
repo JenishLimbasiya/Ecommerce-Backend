@@ -12,7 +12,7 @@ const signup = {
 
 const login = {
   body: Joi.object().keys({
-    email: Joi.string().email().label("email"),
+    email: Joi.string().email().required().label("email"),
     password: Joi.string().required().label("password"),
     googleid: Joi.string().label("googleid"),
   }),
