@@ -1,13 +1,23 @@
 import mongoose from "mongoose";
+import constant from "../common/config/constant";
 
 const subCategorySchema = new mongoose.Schema(
   {
     categoryId: {
-      Type: mongoose.Schema.Types.ObjectId,
-      // ref: "category",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "category",
     },
     name: {
-      Type: String,
+      type: String,
+    },
+    status: {
+      type: String,
+      enum: [
+        constant.STATUS.ACTIVE,
+        constant.STATUS.INACTIVE,
+        constant.STATUS.DELETE,
+      ],
+      default: constant.STATUS.ACTIVE,
     },
   },
   {
