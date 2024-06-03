@@ -55,6 +55,11 @@ export interface addCategory {
   name: string;
 }
 
+export interface addInnerCategory {
+  name: string;
+  subCategoryId: ObjectId;
+}
+
 export interface editCategory {
   id: ObjectId;
   name: string;

@@ -17,6 +17,7 @@ const validate = {
   token: "token is required!",
   password: "password is required",
   categoryId: "category id is required",
+  subCategoryId: "inner subCategory is required",
 };
 
 const errormessage = {
