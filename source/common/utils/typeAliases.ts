@@ -50,3 +50,12 @@ export interface changePassword {
   oldPassword: string;
   newPassword: string;
 }
+
+export interface addCategory {
+  name: string;
+}
+
+export interface editCategory {
+  id: ObjectId;
+  name: string;
+}

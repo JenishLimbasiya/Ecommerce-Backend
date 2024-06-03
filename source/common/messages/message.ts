@@ -4,6 +4,10 @@ const success = {
   forgotPassword: "Forgot Password Email Sent Successfully!",
   tokenVerified: "Token verify Successfully!",
   passwordChange: "Password reset successful! New password has been update",
+  addCategory: "Category add successfully",
+  editCategory: "Category update successfully",
+  categoryList: "category List fetched successfully",
+  categoryDelete: "Category deleted successfully",
   addSubCategory: "Add sub category successfully",
 };
 
@@ -30,6 +34,10 @@ const errormessage = {
   userNotExist: "user not exists",
   invalidToken: "Invalid Token",
   oldPassword: "old password is incorrect",
+  categoryExist: "This category is alredy exists",
+  invalidRequestMethod: "Invalid request method",
+  categoryNotFound: "Category Not Exist",
+  categoryAlredyDelete: "Category is alredy deleted",
   subCategoryExist: "sub category is alredy exists",
 };
 
