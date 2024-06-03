@@ -1,7 +1,7 @@
 import { Request } from "express";
 import httpStatus from "http-status";
 import appError from "../../common/utils/appError";
-import subCategoryModel from "../../models/subcategory";
+import subCategoryModel from "../../models/subCategoryModel";
 import { subCategory } from "../../common/utils/typeAliases";
 import message from "../../common/messages/message";
 
