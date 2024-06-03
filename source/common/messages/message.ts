@@ -4,6 +4,7 @@ const success = {
   forgotPassword: "Forgot Password Email Sent Successfully!",
   tokenVerified: "Token verify Successfully!",
   passwordChange: "Password reset successful! New password has been update",
+  addSubCategory: "Add sub category successfully",
 };
 
 const validate = {
@@ -11,6 +12,7 @@ const validate = {
   email: "email is required!",
   token: "token is required!",
   password: "password is required",
+  categoryId: "category id is required",
 };
 
 const errormessage = {
@@ -28,6 +30,7 @@ const errormessage = {
   userNotExist: "user not exists",
   invalidToken: "Invalid Token",
   oldPassword: "old password is incorrect",
+  subCategoryExist: "sub category is alredy exists",
 };
 
 export default {

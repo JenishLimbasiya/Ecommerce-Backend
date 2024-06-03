@@ -1,4 +1,5 @@
 import Joi from "joi";
+import { ObjectId } from "mongoose";
 
 export interface appError {
   status: number;
@@ -38,6 +39,11 @@ export interface forgotPassword {
 }
 export interface verifyToken {
   token: string;
+}
+
+export interface subCategory {
+  name: string;
+  categoryId: ObjectId;
 }
 
 export interface changePassword {
