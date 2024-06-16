@@ -1,0 +1,68 @@
+import mongoose from "mongoose";
+import constant from "../common/config/constant";
+
+const productSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+    },
+
+    description: {
+      type: String,
+    },
+
+    price: {
+      type: Number,
+    },
+
+    disprice: {
+      type: Number,
+    },
+
+    productImage: {
+      type: [String],
+      default: null,
+    },
+
+    quantity: {
+      type: Number,
+    },
+
+    productValue: {
+      type: Number,
+    },
+
+    subCategoryId: {
+      type: mongoose.Schema.Types.ObjectId,
+    },
+
+    innerCategoryId: {
+      type: mongoose.Schema.Types.ObjectId,
+    },
+
+    reviewStar: {
+      type: Number,
+    },
+
+    status: {
+      type: String,
+      enum: [
+        constant.STATUS.ACTIVE,
+        constant.STATUS.INACTIVE,
+        constant.STATUS.DELETE,
+      ],
+      default: constant.STATUS.ACTIVE,
+    },
+  },
+
+  {
+    timestamps: {
+      createdAt: "createdAt",
+      updatedAt: "updatedAt",
+    },
+  }
+);
+
+const productModel = mongoose.model("product", productSchema);
+
+export default productModel;
