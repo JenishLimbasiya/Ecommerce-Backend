@@ -46,6 +46,7 @@ export interface changePassword {
 export interface addCategory {
   name: string;
 }
+
 export interface editCategory {
   id: ObjectId;
   name: string;
@@ -57,4 +58,9 @@ export interface addSubCategory {
 export interface editSubCategory {
   id: ObjectId;
   name: string;
+}
+
+export interface addInnerCategory {
+  name: string;
+  subCategoryId: ObjectId;
 }

@@ -7,6 +7,10 @@ roleRights.set(roles[0], [
   "editCategory",
   "categoryList",
   "deleteCategory",
+  "addInnerCategory",
+  "editInnerCategory",
+  "innerCategoryList",
+  "innerCategoryDelete",
 ]);
 
 roleRights.set(roles[1], ["changePassword"]);
