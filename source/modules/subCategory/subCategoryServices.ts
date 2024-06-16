@@ -50,7 +50,7 @@ const editSubCategory = async (req: Request, body: editSubCategory) => {
 
     const updateSubCategory = await subCategoryModel.findByIdAndUpdate(
       body.id,
-      { new: body.name },
+      { name: body.name },
       { new: true }
     );
 

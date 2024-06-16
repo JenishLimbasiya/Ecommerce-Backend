@@ -8,31 +8,31 @@ import auth from "../../common/middlewares/auth";
 const router = express.Router();
 
 router
-  .route("/add")
+  .route("/addSubCategory")
   .post(
-    auth("add"),
+    auth("addSubCategory"),
     validate(subCategoryValidate.addSubCategory),
     subCategoryController.addSubCategory
   )
   .all(methodNotAllowed);
 
 router
-  .route("/edit")
+  .route("/editSubCategory")
   .patch(
-    auth("categoryList"),
+    auth("editSubCategory"),
     validate(subCategoryValidate.editSubCategory),
     subCategoryController.editSubCategory
   )
   .all(methodNotAllowed);
 
 router
-  .route("/list")
-  .get(auth("categoryList"), subCategoryController.subCategoryList)
+  .route("/subCategoryList")
+  .get(auth("subCategoryList"), subCategoryController.subCategoryList)
   .all(methodNotAllowed);
 
 router
-  .route("/delete")
-  .patch(auth("categoryList"), subCategoryController.deleteSubCategory)
+  .route("/deleteSubCategory/:id")
+  .patch(auth("deleteSubCategory"), subCategoryController.deleteSubCategory)
   .all(methodNotAllowed);
 
 export default router;

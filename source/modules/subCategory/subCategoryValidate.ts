@@ -9,8 +9,8 @@ const addSubCategory = {
 
 const editSubCategory = {
   body: Joi.object().keys({
+    id: Joi.string().required().label("id"),
     name: Joi.string().required().label("name"),
-    categoryId: Joi.string().required().label("categoryId"),
   }),
 };
 
