@@ -127,6 +127,7 @@ const forgotPassword = async (req: Request, body: forgotPassword) => {
     }
 
     // await sendEmail(cheakUser.email!, "FORGOT", cheakUser._id.toString());
+    return;
   } catch (error: any) {
     throw new appError(error.status, error.message);
   }

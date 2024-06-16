@@ -8,11 +8,11 @@ import constant from "../../common/config/constant";
 
 const addCategory = async (req: Request, body: addCategory) => {
   try {
-    const ckeakCategory = await categoryModel.findOne({
+    const checkCategory = await categoryModel.findOne({
       name: body.name,
     });
 
-    if (ckeakCategory) {
+    if (checkCategory) {
       throw new appError(
         httpStatus.CONFLICT,
         message.errormessage.categoryExist

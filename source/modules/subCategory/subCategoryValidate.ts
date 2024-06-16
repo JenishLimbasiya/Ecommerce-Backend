@@ -7,4 +7,11 @@ const addSubCategory = {
   }),
 };
 
-export default { addSubCategory };
+const editSubCategory = {
+  body: Joi.object().keys({
+    name: Joi.string().required().label("name"),
+    categoryId: Joi.string().required().label("categoryId"),
+  }),
+};
+
+export default { addSubCategory, editSubCategory };

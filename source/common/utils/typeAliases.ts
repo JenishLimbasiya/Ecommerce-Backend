@@ -12,7 +12,6 @@ export interface apiResponse {
   messsge: string;
   data: Array<object> | object;
 }
-
 export interface requestSchema {
   params?: Joi.ObjectSchema;
   query?: Joi.ObjectSchema;
@@ -40,22 +39,22 @@ export interface forgotPassword {
 export interface verifyToken {
   token: string;
 }
-
-export interface subCategory {
-  name: string;
-  categoryId: ObjectId;
-}
-
 export interface changePassword {
   oldPassword: string;
   newPassword: string;
 }
-
 export interface addCategory {
   name: string;
 }
-
 export interface editCategory {
+  id: ObjectId;
+  name: string;
+}
+export interface addSubCategory {
+  name: string;
+  categoryId: ObjectId;
+}
+export interface editSubCategory {
   id: ObjectId;
   name: string;
 }
