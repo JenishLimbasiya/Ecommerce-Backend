@@ -64,3 +64,25 @@ export interface addInnerCategory {
   name: string;
   subCategoryId: ObjectId;
 }
+
+export interface addProduct {
+  name: string;
+  description: string;
+  price: number;
+  disprice: number;
+  productImage: string[];
+  quantity: number;
+  productValue: string;
+  subCategoryId: ObjectId;
+  innerCategoryId: ObjectId;
+}
+
+export interface editProduct {
+  name: string;
+  description: string;
+  price: number;
+  disprice: number;
+  productImage: string[];
+  quantity: number;
+  productValue: string;
+}

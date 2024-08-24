@@ -12,6 +12,10 @@ const success = {
   editSubCategory: "Sub category update successfully",
   subCategoryList: "Sub category List fetched successfully",
   subCategoryDelete: "Sub Category deleted successfully",
+  addProduct: "product added successfully",
+  editProduct: "product updated successfully",
+  productList: "product List fetched successfully",
+  productDelete: "product deleted successfully",
 };
 
 const validate = {
@@ -45,6 +49,8 @@ const errormessage = {
   subCategoryExist: "sub category is alredy exists",
   subCategoryNotFound: "sub Category Not Exist",
   subCategoryAlredyDelete: "sub Category is alredy deleted",
+  productNot: "product not found",
+  productAlredyDelete: "product is alredy deleted",
 };
 
 export default {

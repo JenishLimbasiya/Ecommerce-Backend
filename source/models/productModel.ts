@@ -20,7 +20,7 @@ const productSchema = new mongoose.Schema(
     },
 
     productImage: {
-      type: [String],
+      type: Array,
       default: null,
     },
 
@@ -29,7 +29,7 @@ const productSchema = new mongoose.Schema(
     },
 
     productValue: {
-      type: Number,
+      type: String,
     },
 
     subCategoryId: {
