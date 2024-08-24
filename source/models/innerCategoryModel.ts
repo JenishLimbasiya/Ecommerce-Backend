@@ -8,6 +8,7 @@ const innerCategorySchema = new mongoose.Schema(
     },
     subCategoryId: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "subcategory",
     },
     status: {
       type: String,

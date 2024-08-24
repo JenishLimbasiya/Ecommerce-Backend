@@ -62,7 +62,29 @@ const editSubCategory = async (req: Request, body: editSubCategory) => {
 
 const subCategoryList = async () => {
   try {
-    const listSubCategory = await subCategoryModel.find({});
+    const listSubCategory = await subCategoryModel.aggregate([
+      {
+        $lookup: {
+          from: "innercategories",
+          foreignField: "subCategoryId",
+          localField: "_id",
+          as: "innerCategories",
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          name: 1,
+          status: 1,
+          innerCategories: {
+            _id: 1,
+            name: 1,
+            status: 1,
+            subCategoryId: 1,
+          },
+        },
+      },
+    ]);
 
     return listSubCategory;
   } catch (error: any) {
