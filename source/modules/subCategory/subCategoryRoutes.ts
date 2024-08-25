@@ -27,7 +27,7 @@ router
 
 router
   .route("/subCategoryList")
-  .get(auth("subCategoryList"), subCategoryController.subCategoryList)
+  .get(subCategoryController.subCategoryList)
   .all(methodNotAllowed);
 
 router
