@@ -125,7 +125,6 @@ const forgotPassword = async (req: Request, body: forgotPassword) => {
         message.errormessage.userNotExist
       );
     }
-    console.log("before send password reset");
     // await sendEmail(cheakUser.email!, "FORGOT", cheakUser._id.toString());
     return;
   } catch (error: any) {
