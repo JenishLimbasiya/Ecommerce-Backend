@@ -15,7 +15,15 @@ router.use(express.urlencoded({ extended: false }));
 
 router.use(express.json());
 
-router.use(cors({ origin: true }));
+// router.use(cors({ origin: true }));
+
+router.use(
+  cors({
+    origin: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 
 router.use("/", routes);
 

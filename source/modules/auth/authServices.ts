@@ -20,7 +20,7 @@ const signup = async (req: Request, body: signup) => {
     });
 
     if (cheakUser) {
-      throw new appError(httpStatus.NOT_FOUND, message.errormessage.userExist);
+      throw new appError(httpStatus.NOT_FOUND, message.errormessage.emailExist);
     }
 
     const hashedPassword = await bcrypt.hash(
@@ -125,7 +125,7 @@ const forgotPassword = async (req: Request, body: forgotPassword) => {
         message.errormessage.userNotExist
       );
     }
-
+    console.log("before send password reset");
     // await sendEmail(cheakUser.email!, "FORGOT", cheakUser._id.toString());
     return;
   } catch (error: any) {

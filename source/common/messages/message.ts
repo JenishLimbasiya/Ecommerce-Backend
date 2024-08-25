@@ -51,6 +51,7 @@ const errormessage = {
   subCategoryAlredyDelete: "sub Category is alredy deleted",
   productNot: "product not found",
   productAlredyDelete: "product is alredy deleted",
+  emailExist: "This email is alredy exists",
 };
 
 export default {
