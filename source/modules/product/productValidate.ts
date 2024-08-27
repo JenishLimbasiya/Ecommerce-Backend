@@ -6,7 +6,11 @@ const addProduct = {
     description: Joi.string().required().label("description"),
     price: Joi.number().required().label("price"),
     disprice: Joi.number().required().label("disprice"),
-    productImage: Joi.array().allow(null).required().label("description"),
+    // productImage: Joi.array()
+    //   .items(Joi.string())
+    //   .min(1)
+    //   .required()
+    //   .label("Product Image"),
     quantity: Joi.number().required().label("quantity"),
     productValue: Joi.string().required().label("productValue"),
     innerCategoryId: Joi.string().required().label("innerCategoryId"),

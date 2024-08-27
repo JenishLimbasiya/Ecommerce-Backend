@@ -48,11 +48,10 @@ const httpServer = http.createServer(router);
 const PORT = +(process.env.PORT as string) || 6060;
 let server: http.Server;
 
-console.log("mongodb url ================> ", config.mongoose.url);
 mongoose.connect(config.mongoose.url).then((result: any) => {
   logger.info("Database contation is successfully!");
   server = httpServer.listen(PORT, () =>
-    console.log(The server is running on port ${PORT})
+    console.log(`The server is running on port ${PORT}`)
   );
 });
 
@@ -81,5 +80,5 @@ process.on("SIGTERM", () => {
   logger.info(" received");
   if (server) {
     server.close();
-  }
+  }
 });

@@ -11,7 +11,7 @@ router
   .route("/addProduct")
   .post(
     auth("addProduct"),
-    upload.array("files"),
+    upload.array("productImage"),
     validate(productValidate.addProduct),
     productController.addProduct
   )

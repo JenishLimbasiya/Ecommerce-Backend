@@ -7,7 +7,6 @@ import productServices from "./productServices";
 const addProduct = async (req: Request, res: Response) => {
   try {
     const { body, files } = req;
-    console.log("files", files);
     const createProduct = await productServices.addProduct(req, body, files);
 
     createResponse(res, httpStatus.OK, message.success.addProduct);

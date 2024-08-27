@@ -25,6 +25,11 @@ const validate = {
   password: "password is required",
   categoryId: "category id is required",
   subCategoryId: "inner subCategory is required",
+  description: "description is required",
+  price: "price is required",
+  disprice: "discount price is required",
+  quantity: "quantity is required",
+  productValue: "product value is required",
 };
 
 const errormessage = {

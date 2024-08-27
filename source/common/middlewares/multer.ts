@@ -22,7 +22,6 @@ const storage: StorageEngine = multer.diskStorage({
   ) {
     const dir = "./source/public/temp";
 
-    // Check if directory exists, and if not, create it
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
