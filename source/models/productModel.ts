@@ -21,7 +21,7 @@ const productSchema = new mongoose.Schema(
 
     productImage: {
       type: Array,
-      default: null,
+      default: [],
     },
 
     quantity: {

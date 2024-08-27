@@ -5,10 +5,23 @@ import { addProduct, editProduct } from "../../common/utils/typeAliases";
 import message from "../../common/messages/message";
 import productModel from "../../models/productModel";
 import constant from "../../common/config/constant";
+import { uploadOnCloudinary } from "../../common/utils/cloudinary";
 
-const addProduct = async (req: Request, body: addProduct) => {
+const addProduct = async (req: Request, body: addProduct, files: any) => {
   try {
-    const product = await productModel.create(body);
+    let imageUrls: string[] = [];
+
+    for (const file of files) {
+      const uploadResult = await uploadOnCloudinary(file.path);
+      if (uploadResult?.secure_url) {
+        imageUrls.push(uploadResult.secure_url);
+      }
+    }
+
+    const product = await productModel.create({
+      ...body,
+      productImage: imageUrls,
+    });
 
     return product;
   } catch (error: any) {

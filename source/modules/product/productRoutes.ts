@@ -4,13 +4,14 @@ import methodNotAllowed from "../../common/utils/methodNotFound";
 import auth from "../../common/middlewares/auth";
 import productValidate from "./productValidate";
 import productController from "./productController";
-
+import { upload } from "../../common/middlewares/multer";
 const router = express.Router();
 
 router
   .route("/addProduct")
   .post(
     auth("addProduct"),
+    upload.array("files"),
     validate(productValidate.addProduct),
     productController.addProduct
   )

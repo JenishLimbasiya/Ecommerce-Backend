@@ -6,7 +6,9 @@ import productServices from "./productServices";
 
 const addProduct = async (req: Request, res: Response) => {
   try {
-    const createProduct = await productServices.addProduct(req, req.body);
+    const { body, files } = req;
+    console.log("files", files);
+    const createProduct = await productServices.addProduct(req, body, files);
 
     createResponse(res, httpStatus.OK, message.success.addProduct);
   } catch (error: any) {
