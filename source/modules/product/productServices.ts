@@ -18,6 +18,10 @@ const addProduct = async (req: Request, body: addProduct, files: any) => {
       }
     }
 
+    if (imageUrls.length === 0) {
+      throw new Error("Failed to upload image.");
+    }
+
     const product = await productModel.create({
       ...body,
       productImage: imageUrls,

@@ -17,10 +17,12 @@ const uploadOnCloudinary = async (
   }
 
   try {
+    console.log("enter in try");
     const response: UploadApiResponse = await cloudinary.uploader.upload(
       localFilePath,
       {
         resource_type: "auto",
+        timeout: 120000,
       }
     );
 
@@ -28,6 +30,15 @@ const uploadOnCloudinary = async (
       "File successfully uploaded to Cloudinary:",
       response.secure_url
     );
+
+    // Delete the local file after a successful upload
+    try {
+      fs.unlinkSync(localFilePath);
+      console.log("Local file deleted:", path.basename(localFilePath));
+    } catch (unlinkError) {
+      console.error("Error deleting local file:", unlinkError);
+    }
+
     return response;
   } catch (error) {
     console.error("Error uploading file to Cloudinary:", error);
