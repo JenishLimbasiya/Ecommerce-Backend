@@ -36,4 +36,9 @@ router
   .delete(auth("deleteProduct"), productController.deleteProduct)
   .all(methodNotAllowed);
 
+router
+  .route("/productdetails/:id")
+  .get(productController.productDetails)
+  .all(methodNotAllowed);
+
 export default router;

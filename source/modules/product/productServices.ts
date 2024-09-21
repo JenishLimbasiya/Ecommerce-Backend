@@ -90,9 +90,19 @@ const deleteProduct = async (req: Request, id: string) => {
   }
 };
 
+const productDetails = async (req: Request, id: string) => {
+  const existingProduct = await productModel.findById(id);
+
+  if (!existingProduct) {
+    throw new appError(httpStatus.NOT_FOUND, message.errormessage.productNot);
+  }
+  return existingProduct;
+};
+
 export default {
   addProduct,
   updateProduct,
   productList,
   deleteProduct,
+  productDetails,
 };

@@ -49,9 +49,20 @@ const deleteProduct = async (req: Request, res: Response) => {
   }
 };
 
+const productDetails = async (req: Request, res: Response) => {
+  try {
+    const product = await productServices.productDetails(req, req.params.id);
+
+    createResponse(res, httpStatus.OK, message.success.productDetails, product);
+  } catch (error: any) {
+    createResponse(res, error.status, error.message);
+  }
+};
+
 export default {
   addProduct,
   editProduct,
   productList,
   deleteProduct,
+  productDetails,
 };

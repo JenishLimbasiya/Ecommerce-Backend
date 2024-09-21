@@ -19,8 +19,9 @@ roleRights.set(roles[0], [
   "editProduct",
   "productList",
   "deleteProduct",
+  "productdetails",
 ]);
 
-roleRights.set(roles[1], ["changePassword"]);
+roleRights.set(roles[1], ["changePassword", "productdetails"]);
 
 export { roles, roleRights };

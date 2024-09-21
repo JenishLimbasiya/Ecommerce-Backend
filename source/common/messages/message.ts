@@ -16,6 +16,7 @@ const success = {
   editProduct: "product updated successfully",
   productList: "product List fetched successfully",
   productDelete: "product deleted successfully",
+  productDetails: "product details fetched successfully",
 };
 
 const validate = {
