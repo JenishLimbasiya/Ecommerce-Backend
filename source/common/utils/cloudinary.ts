@@ -17,7 +17,6 @@ const uploadOnCloudinary = async (
   }
 
   try {
-    console.log("enter in try");
     const response: UploadApiResponse = await cloudinary.uploader.upload(
       localFilePath,
       {

@@ -28,7 +28,10 @@ router
 
 router
   .route("/productList")
-  .get(auth("productList"), productController.productList)
+  .get(
+    // auth("productList"),
+    productController.productList
+  )
   .all(methodNotAllowed);
 
 router
